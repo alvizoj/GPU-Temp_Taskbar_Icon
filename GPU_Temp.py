@@ -1,4 +1,5 @@
 # --------- Imports ---------
+from turtle import color
 from infi.systray import SysTrayIcon
 from infi.systray.traybar import PostMessage, WM_CLOSE
 from PIL import Image, ImageDraw, ImageFont
@@ -13,10 +14,15 @@ import sys
 TrayIconIsDestroyed = False
 W, H = 50, 50
 FONT_SIZE = 40
+BLUE = (3, 167, 255)
 YELLOW = (255, 255, 0)
-
+ORANGE = (255, 153, 28)
+RED = (250, 54, 0)
+TEXT_COLOR = YELLOW
 
 # --------- Helper Functions ---------
+
+
 def setup_images():
     # Check if /icons folder exists in current directory
     MYDIR = ("icons")
@@ -39,7 +45,16 @@ def setup_images():
         font_type = ImageFont.truetype("arial.ttf", FONT_SIZE)
         msg = "{}".format(index)
 
-        d.text((0, 0), msg, fill=YELLOW, font=font_type, align='center')
+        if index < 60:
+            TEXT_COLOR = BLUE
+        elif index < 70:
+            TEXT_COLOR = YELLOW
+        elif index < 80:
+            TEXT_COLOR = ORANGE
+        elif index >= 80:
+            TEXT_COLOR = RED
+        d.text((0, 0), msg, fill=TEXT_COLOR, font=font_type, align='center')
+
         img.save(filename)
 
 
