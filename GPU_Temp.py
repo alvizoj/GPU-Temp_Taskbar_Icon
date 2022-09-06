@@ -1,3 +1,4 @@
+# --------- Imports ---------
 from infi.systray import SysTrayIcon
 from infi.systray.traybar import PostMessage, WM_CLOSE
 from PIL import Image, ImageDraw, ImageFont
@@ -7,20 +8,26 @@ import math
 import os.path
 import sys
 
+
+# --------- Global Variables ---------
 TrayIconIsDestroyed = False
 W, H = 50, 50
 FONT_SIZE = 40
 YELLOW = (255, 255, 0)
 
 
+# --------- Helper Functions ---------
 def setup_images():
+    # Check if /icons folder exists in current directory
     MYDIR = ("icons")
     CHECK_FOLDER = os.path.isdir(MYDIR)
 
-    # If folder doesn't exist, then create it.
+    # Create the folder if it doesn't exist.
     if not CHECK_FOLDER:
         os.makedirs(MYDIR)
 
+    # For numbers 0-99, create an image of each number as yellow text
+    # and save it to /icons folder.
     for index in range(100):
         filename = 'icons/temp_{i}.ico'.format(i=index)
         if os.path.exists(filename):
@@ -50,9 +57,11 @@ def quit_app(systray):
     TrayIconIsDestroyed = True
 
 
+# --------- MAIN LOOP ---------
 def main():
     setup_images()
 
+    # Create and start a SysTrayIcon instance with image of current temperature
     temp = get_GPU_temp()
     systray = SysTrayIcon(return_image_by_index(temp),
                           "GPU Temp: {temp}°".format(temp=temp),
@@ -61,13 +70,16 @@ def main():
 
     while True:
         try:
+            # Close app if user manually quits
             if TrayIconIsDestroyed:
                 sys.exit()
 
+            # Every second, grab updated GPU temp and display the corresponsing image
             time.sleep(1)
             temp = get_GPU_temp()
             systray.update(return_image_by_index(temp),
                            "GPU Temp: {temp}°".format(temp=temp))
+
         except KeyboardInterrupt:
             systray.shutdown()
 
