@@ -1,4 +1,4 @@
-# GPU Temperature Taskbar Icon
+GPU Temperature Taskbar Icon
 
 ---------------- Installation Steps ----------------
 1. Download python from https://www.python.org/downloads/
