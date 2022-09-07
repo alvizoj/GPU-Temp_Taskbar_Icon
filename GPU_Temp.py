@@ -16,9 +16,8 @@ FONT_SIZE = 40
 TRANSPARENT = (255, 255, 255, 0)
 YELLOW = (255, 255, 0)
 
+
 # --------- Helper Functions ---------
-
-
 def setup_images():
     # Check if /icons folder exists in current directory
     MYDIR = ("icons")
