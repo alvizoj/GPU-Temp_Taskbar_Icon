@@ -9,3 +9,5 @@ missing = required - installed
 if missing:
     # implement pip as a subprocess:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+else:
+    print('All required dependencies are installed :)')
