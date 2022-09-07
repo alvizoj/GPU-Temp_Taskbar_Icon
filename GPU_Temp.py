@@ -14,11 +14,8 @@ import sys
 TrayIconIsDestroyed = False
 W, H = 50, 50
 FONT_SIZE = 40
-BLUE = (3, 167, 255)
+TRANSPARENT = (255, 255, 255, 0)
 YELLOW = (255, 255, 0)
-ORANGE = (255, 153, 28)
-RED = (250, 54, 0)
-TEXT_COLOR = YELLOW
 
 # --------- Helper Functions ---------
 
@@ -39,21 +36,13 @@ def setup_images():
         if os.path.exists(filename):
             continue
 
-        img = Image.new('RGBA', (W, H), color=(255, 255, 255, 0))
+        img = Image.new('RGBA', (W, H), color=TRANSPARENT)
         d = ImageDraw.Draw(img)
 
         font_type = ImageFont.truetype("arial.ttf", FONT_SIZE)
         msg = "{}".format(index)
 
-        if index < 60:
-            TEXT_COLOR = BLUE
-        elif index < 70:
-            TEXT_COLOR = YELLOW
-        elif index < 80:
-            TEXT_COLOR = ORANGE
-        elif index >= 80:
-            TEXT_COLOR = RED
-        d.text((0, 0), msg, fill=TEXT_COLOR, font=font_type, align='center')
+        d.text((0, 0), msg, fill=YELLOW, font=font_type, align='center')
 
         img.save(filename)
 
