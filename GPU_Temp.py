@@ -1,5 +1,4 @@
 # --------- Imports ---------
-from turtle import color
 from infi.systray import SysTrayIcon
 from infi.systray.traybar import PostMessage, WM_CLOSE
 from PIL import Image, ImageDraw, ImageFont
