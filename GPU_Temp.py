@@ -10,14 +10,15 @@ import sys
 
 
 # --------- Global Variables ---------
-TrayIconIsDestroyed = False
+tray_icon_is_destroyed = False
 W, H = 50, 50
 FONT_SIZE = 40
 TRANSPARENT = (255, 255, 255, 0)
 YELLOW = (255, 255, 0)
 
-
 # --------- Helper Functions ---------
+
+
 def setup_images():
     # Check if /icons folder exists in current directory
     MYDIR = ("icons")
@@ -54,9 +55,10 @@ def return_image_by_index(i):
     return 'icons/temp_{index}.ico'.format(index=i)
 
 
+# SysTrayIcon functions
 def quit_app(systray):
-    global TrayIconIsDestroyed
-    TrayIconIsDestroyed = True
+    global tray_icon_is_destroyed
+    tray_icon_is_destroyed = True
 
 
 # --------- MAIN LOOP ---------
@@ -73,7 +75,7 @@ def main():
     while True:
         try:
             # Close app if user manually quits
-            if TrayIconIsDestroyed:
+            if tray_icon_is_destroyed:
                 sys.exit()
 
             # Every second, grab updated GPU temp and display the corresponsing image
