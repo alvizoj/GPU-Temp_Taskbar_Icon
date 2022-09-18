@@ -16,9 +16,8 @@ FONT_SIZE = 40
 TRANSPARENT = (255, 255, 255, 0)
 YELLOW = (255, 255, 0)
 
+
 # --------- Helper Functions ---------
-
-
 def setup_images():
     # Check if /icons folder exists in current directory
     MYDIR = ("icons")
@@ -78,7 +77,7 @@ def main():
             if tray_icon_is_destroyed:
                 sys.exit()
 
-            # Every second, grab updated GPU temp and display the corresponsing image
+            # Every second, grab updated GPU temp and display the corresponding image
             time.sleep(1)
             temp = get_GPU_temp()
             systray.update(return_image_by_index(temp),
