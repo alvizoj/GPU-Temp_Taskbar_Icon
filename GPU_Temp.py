@@ -78,7 +78,7 @@ def main():
                 sys.exit()
 
             # Every second, grab updated GPU temp and display the corresponding image
-            time.sleep(1)
+            time.sleep(1.5)
             temp = get_GPU_temp()
             systray.update(return_image_by_index(temp),
                            "GPU Temp: {temp}°".format(temp=temp))
