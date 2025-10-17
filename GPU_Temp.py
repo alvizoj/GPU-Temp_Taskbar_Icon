@@ -13,7 +13,7 @@ tray_icon_is_destroyed = False
 W, H = 50, 50
 FONT_SIZE = 40
 TRANSPARENT = (255, 255, 255, 0)
-YELLOW = (255, 255, 0)
+YELLOW = (255, 220, 0)
 last_update_time = time.time()
 
 TEMP_UPDATE_INTERVAL = 3        # How often to check GPU temperature
