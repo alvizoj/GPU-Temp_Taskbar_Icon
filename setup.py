@@ -1,3 +1,4 @@
+# --------- Imports ---------
 import os
 import pathlib
 import sys
@@ -9,6 +10,7 @@ import pkg_resources
 CURRENT_DIRECTORY = pathlib.Path(__file__).parent.absolute()
 VBS_FILE_NAME = "launch_GPU_Temp-hidden.vbs"
 BATCH_FILE_NAME = "launch_GPU_Temp.bat"
+
 
 # --------- Helper Functions ---------
 def install_dependencies():
