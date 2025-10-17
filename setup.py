@@ -138,6 +138,17 @@ def update_batch_file():
     except Exception as e:
         print(f"Warning: Could not update batch file: {e}")
 
+def run_vbs_file():
+    print("\nStarting application...")
+    vbs_path = CURRENT_DIRECTORY / VBS_FILE_NAME
+
+    try:
+        os.startfile(str(vbs_path))
+        print("✓ Application started!")
+    except Exception as error:
+        print(f"ERROR: Could not start application: {error}")
+        input("\nPress Enter to exit...")
+
 
 # --------- MAIN LOOP ---------
 def main():
@@ -190,18 +201,10 @@ def main():
         print()
         start_now = input("Would you like to start the application now? (Y/n): ").strip().lower()
         if not start_now or start_now == "y":
-            print("\nStarting application...")
-            vbs_path = CURRENT_DIRECTORY / VBS_FILE_NAME
-
-            try:
-                os.startfile(str(vbs_path))
-                print("✓ Application started!")
-            except Exception as error:
-                print(f"ERROR: Could not start application: {error}")
-                input("\nPress Enter to exit...")
+            run_vbs_file()
         else:
             print("\nSetup complete. Run the VBS file when you're ready!")
-    
+
     else:
         print("\nSetup completed with some errors. Check messages above.")
 
