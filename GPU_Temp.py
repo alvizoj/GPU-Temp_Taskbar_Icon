@@ -1,6 +1,5 @@
 # --------- Imports ---------
 from infi.systray import SysTrayIcon
-from infi.systray.traybar import PostMessage, WM_CLOSE
 from PIL import Image, ImageDraw, ImageFont
 import time
 import GPUtil
@@ -66,10 +65,11 @@ def main():
 
     # Create and start a SysTrayIcon instance with image of current temperature
     temp = get_GPU_temp()
-    systray = SysTrayIcon(return_image_by_index(temp),
-                          "GPU Temp: {temp}°".format(temp=temp),
-                          on_quit=quit_app)
-    systray.start()
+    system_tray_icon = SysTrayIcon(
+        return_image_by_index(temp),
+        "GPU Temp: {temp}°".format(temp=temp),
+        on_quit=quit_app)
+    system_tray_icon.start()
 
     while True:
         try:
@@ -80,11 +80,12 @@ def main():
             # Every second, grab updated GPU temp and display the corresponding image
             time.sleep(1.5)
             temp = get_GPU_temp()
-            systray.update(return_image_by_index(temp),
-                           "GPU Temp: {temp}°".format(temp=temp))
+            system_tray_icon.update(
+                return_image_by_index(temp),
+                "GPU Temp: {temp}°".format(temp=temp))
 
         except KeyboardInterrupt:
-            systray.shutdown()
+            system_tray_icon.shutdown()
 
 
 if __name__ == "__main__":
