@@ -1,5 +1,4 @@
 @echo off
-
-python GPU_Temp.py 
-
+cd /d "%~dp0"
+python GPU_Temp.py
 exit
