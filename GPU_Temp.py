@@ -69,6 +69,14 @@ def quit_app(systray):
     global tray_icon_is_destroyed
     tray_icon_is_destroyed = True
 
+def refresh_temp(systray):
+    temp = get_GPU_temp()
+
+    if temp is not None:
+        systray.update(
+            return_image_by_index(temp),
+            "GPU Temp: {temp}°".format(temp=temp))
+
 
 def detect_stale_update():
     """Check if the last update was more than 10 seconds ago"""
@@ -88,9 +96,11 @@ def main():
 
     # Create and start a SysTrayIcon instance with image of current temperature
     temp = get_GPU_temp()
+    menu_options = (("Refresh", None, refresh_temp),)
     system_tray_icon = SysTrayIcon(
         return_image_by_index(temp),
         "GPU Temp: {temp}\u00b0C".format(temp=temp),
+        menu_options=menu_options,
         on_quit=quit_app)
     system_tray_icon.start()
 
