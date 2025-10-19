@@ -63,6 +63,15 @@ def return_image_by_index(i):
     i = min(99, i)
     return 'icons/temp_{index}.ico'.format(index=i)
 
+def detect_stale_update():
+    """Check if the last update was more than 10 seconds ago"""
+    global last_update_time
+    current_time = time.time()
+    if current_time - last_update_time > SLEEP_DETECTION_THRESHOLD:
+        # System likely woke from sleep
+        return True
+    return False
+
 
 # SysTrayIcon functions
 def quit_app(systray):
@@ -76,16 +85,6 @@ def refresh_temp(systray):
         systray.update(
             return_image_by_index(temp),
             "GPU Temp: {temp}°".format(temp=temp))
-
-
-def detect_stale_update():
-    """Check if the last update was more than 10 seconds ago"""
-    global last_update_time
-    current_time = time.time()
-    if current_time - last_update_time > SLEEP_DETECTION_THRESHOLD:
-        # System likely woke from sleep
-        return True
-    return False
 
 
 # --------- MAIN LOOP ---------
