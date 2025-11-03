@@ -56,8 +56,8 @@ def create_vbs_file(destination_folder: str, batch_file_path: pathlib.WindowsPat
     
     try:
         # Write VBS file
-        with open(vbs_file_path, 'w') as f:
-            f.write(file_content)
+        with open(vbs_file_path, 'w') as file:
+            file.write(file_content)
         return vbs_file_path
     except Exception as error:
         print(f"ERROR: Failed to create VBS file at {destination_folder}: {error}")
@@ -120,19 +120,19 @@ def update_batch_file():
     try:
         # Check if batch file needs updating
         if batch_file_path.exists():
-            with open(batch_file_path, 'r') as f:
-                current_content = f.read()
+            with open(batch_file_path, 'r') as file:
+                current_content = file.read()
             
             if '%~dp0' not in current_content:
                 print("Updating batch file to use relative paths...")
-                with open(batch_file_path, 'w') as f:
-                    f.write(file_content)
+                with open(batch_file_path, 'w') as file:
+                    file.write(file_content)
                 print("✓ Batch file updated")
         else:
             # Create batch file if it doesn't exist
             print("Creating launch_GPU_Temp.bat...")
-            with open(batch_file_path, 'w') as f:
-                f.write(file_content)
+            with open(batch_file_path, 'w') as file:
+                file.write(file_content)
             print("✓ Batch file created")
         
     except Exception as e:
